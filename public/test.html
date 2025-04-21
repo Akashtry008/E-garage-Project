@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Garage API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #4F46E5;
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #4F46E5;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        button:hover {
+            background-color: #3730A3;
+        }
+        .success {
+            color: #22c55e;
+            font-weight: bold;
+        }
+        .error {
+            color: #ef4444;
+            font-weight: bold;
+        }
+        pre {
+            background-color: #f1f5f9;
+            padding: 12px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>E-Garage API Test Page</h1>
+    <p>Use this page to test your API connections directly, bypassing the main application.</p>
+    
+    <div class="card">
+        <h2>Health Check</h2>
+        <button onclick="testHealth()">Test API Health</button>
+        <div id="healthResult"></div>
+    </div>
+    
+    <div class="card">
+        <h2>Contact Messages (Main Endpoint)</h2>
+        <button onclick="testContactMessages()">Test Contact Messages</button>
+        <div id="contactResult"></div>
+    </div>
+    
+    <div class="card">
+        <h2>Contact Messages (Debug Endpoint)</h2>
+        <button onclick="testContactMessagesDebug()">Test Debug Endpoint</button>
+        <div id="contactDebugResult"></div>
+    </div>
+    
+    <div class="card">
+        <h2>Response Checker</h2>
+        <p>Enter a JSON response to validate the structure:</p>
+        <textarea id="jsonInput" rows="10" style="width: 100%; margin-bottom: 10px;"></textarea>
+        <button onclick="validateJson()">Validate Response</button>
+        <div id="validateResult"></div>
+    </div>
+    
+    <script>
+        // Test the API health endpoint
+        function testHealth() {
+            const resultDiv = document.getElementById('healthResult');
+            resultDiv.innerHTML = '<p>Testing health endpoint...</p>';
+            
+            fetch('http://localhost:8000/api/health')
+                .then(response => {
+                    resultDiv.innerHTML += `<p>Status: ${response.status} ${response.statusText}</p>`;
+                    return response.json();
+                })
+                .then(data => {
+                    resultDiv.innerHTML += `<p class="success">Success!</p>`;
+                    resultDiv.innerHTML += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                })
+                .catch(error => {
+                    resultDiv.innerHTML += `<p class="error">Error: ${error.message}</p>`;
+                });
+        }
+        
+        // Test the main contact messages endpoint
+        function testContactMessages() {
+            const resultDiv = document.getElementById('contactResult');
+            resultDiv.innerHTML = '<p>Testing contact messages endpoint...</p>';
+            
+            fetch('http://localhost:8000/api/contact/')
+                .then(response => {
+                    resultDiv.innerHTML += `<p>Status: ${response.status} ${response.statusText}</p>`;
+                    return response.json();
+                })
+                .then(data => {
+                    resultDiv.innerHTML += `<p class="success">Success!</p>`;
+                    
+                    // Check for expected structure
+                    if (data && data.contact_messages && Array.isArray(data.contact_messages)) {
+                        resultDiv.innerHTML += `<p>Found ${data.contact_messages.length} messages</p>`;
+                    } else {
+                        resultDiv.innerHTML += `<p class="error">Unexpected data structure</p>`;
+                    }
+                    
+                    resultDiv.innerHTML += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                })
+                .catch(error => {
+                    resultDiv.innerHTML += `<p class="error">Error: ${error.message}</p>`;
+                });
+        }
+        
+        // Test the debug contact messages endpoint
+        function testContactMessagesDebug() {
+            const resultDiv = document.getElementById('contactDebugResult');
+            resultDiv.innerHTML = '<p>Testing debug endpoint...</p>';
+            
+            fetch('http://localhost:8000/api/contact/debug')
+                .then(response => {
+                    resultDiv.innerHTML += `<p>Status: ${response.status} ${response.statusText}</p>`;
+                    return response.json();
+                })
+                .then(data => {
+                    resultDiv.innerHTML += `<p class="success">Success!</p>`;
+                    
+                    // Check for expected structure
+                    if (data && data.contact_messages && Array.isArray(data.contact_messages)) {
+                        resultDiv.innerHTML += `<p>Found ${data.contact_messages.length} messages</p>`;
+                    } else {
+                        resultDiv.innerHTML += `<p class="error">Unexpected data structure</p>`;
+                    }
+                    
+                    resultDiv.innerHTML += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                })
+                .catch(error => {
+                    resultDiv.innerHTML += `<p class="error">Error: ${error.message}</p>`;
+                });
+        }
+        
+        // Validate JSON response
+        function validateJson() {
+            const jsonInput = document.getElementById('jsonInput').value;
+            const resultDiv = document.getElementById('validateResult');
+            resultDiv.innerHTML = '';
+            
+            try {
+                const data = JSON.parse(jsonInput);
+                resultDiv.innerHTML += `<p class="success">Valid JSON!</p>`;
+                
+                // Check for contact_messages structure
+                if (data && data.contact_messages && Array.isArray(data.contact_messages)) {
+                    resultDiv.innerHTML += `<p class="success">Contains contact_messages array with ${data.contact_messages.length} messages</p>`;
+                } else {
+                    resultDiv.innerHTML += `<p class="error">Missing expected 'contact_messages' array</p>`;
+                }
+                
+                // List top-level keys
+                resultDiv.innerHTML += `<p>Top-level keys: ${Object.keys(data).join(', ')}</p>`;
+            } catch (error) {
+                resultDiv.innerHTML += `<p class="error">Invalid JSON: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html> 

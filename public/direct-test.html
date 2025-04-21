@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Direct API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        h2 {
+            margin-top: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .url-field {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Direct API Test</h1>
+    <p>This page tests the API directly with minimal code to help diagnose issues.</p>
+    
+    <h2>Health Check</h2>
+    <button onclick="testHealth()">Test API Health</button>
+    <div id="healthResult"></div>
+    
+    <h2>Contact Messages</h2>
+    <button onclick="testContactMessages()">Test Contact Messages</button>
+    <button onclick="testContactMessagesDebug()">Test Debug Endpoint</button>
+    <div id="contactResult"></div>
+    
+    <h2>Bookings/Appointments</h2>
+    <input type="text" id="bookingsUrl" class="url-field" value="http://localhost:8000/api/bookings/" placeholder="API URL">
+    <button onclick="testBookings()">Test Bookings Endpoint</button>
+    <button onclick="testBookingsAdmin()">Test Admin Bookings</button>
+    <button onclick="testCustomBookingsUrl()">Test Custom URL</button>
+    <div id="bookingsResult"></div>
+    
+    <h2>Response Checker</h2>
+    <p>Enter a JSON response to validate the structure:</p>
+    <textarea id="jsonInput" rows="10" style="width: 100%; margin-bottom: 10px;"></textarea>
+    <button onclick="validateJson()">Validate Response</button>
+    <div id="validateResult"></div>
+    
+    <script>
+        // Function to display results
+        function showResult(elementId, text) {
+            document.getElementById(elementId).innerHTML = text;
+        }
+        
+        // Function to display errors
+        function showError(elementId, error) {
+            document.getElementById(elementId).innerHTML = '<div class="error">ERROR: ' + error + '</div>';
+        }
+        
+        // Test the API health endpoint
+        function testHealth() {
+            showResult('healthResult', 'Testing health endpoint...');
+            
+            fetch('http://localhost:8000/api/health')
+                .then(response => {
+                    showResult('healthResult', 'Got response with status: ' + response.status);
+                    return response.text();
+                })
+                .then(text => {
+                    showResult('healthResult', 'Response received:<br>' + text);
+                })
+                .catch(error => {
+                    showError('healthResult', error);
+                });
+        }
+        
+        // Test contact messages endpoint
+        function testContactMessages() {
+            showResult('contactResult', 'Testing contact messages endpoint...');
+            
+            fetch('http://localhost:8000/api/contact/')
+                .then(response => {
+                    showResult('contactResult', 'Got response with status: ' + response.status);
+                    return response.text();
+                })
+                .then(text => {
+                    showResult('contactResult', 'Response received:<br>' + text.substring(0, 500) + '...');
+                })
+                .catch(error => {
+                    showError('contactResult', error);
+                });
+        }
+        
+        // Test debug contact messages endpoint
+        function testContactMessagesDebug() {
+            showResult('contactResult', 'Testing debug endpoint...');
+            
+            fetch('http://localhost:8000/api/contact/debug')
+                .then(response => {
+                    showResult('contactResult', 'Got response with status: ' + response.status);
+                    return response.text();
+                })
+                .then(text => {
+                    showResult('contactResult', 'Response received:<br>' + text.substring(0, 500) + '...');
+                })
+                .catch(error => {
+                    showError('contactResult', error);
+                });
+        }
+        
+        // Test bookings endpoint
+        function testBookings() {
+            showResult('bookingsResult', 'Testing bookings endpoint...');
+            
+            fetch('http://localhost:8000/api/bookings/')
+                .then(response => {
+                    showResult('bookingsResult', 'Got response with status: ' + response.status);
+                    return response.text();
+                })
+                .then(text => {
+                    showResult('bookingsResult', 'Response received:<br>' + text.substring(0, 500) + '...');
+                })
+                .catch(error => {
+                    showError('bookingsResult', error);
+                });
+        }
+        
+        // Test admin bookings endpoint
+        function testBookingsAdmin() {
+            showResult('bookingsResult', 'Testing admin bookings endpoint...');
+            
+            fetch('http://localhost:8000/api/bookings/admin')
+                .then(response => {
+                    showResult('bookingsResult', 'Got response with status: ' + response.status);
+                    return response.text();
+                })
+                .then(text => {
+                    showResult('bookingsResult', 'Response received:<br>' + text.substring(0, 500) + '...');
+                })
+                .catch(error => {
+                    showError('bookingsResult', error);
+                });
+        }
+        
+        // Test custom URL for bookings
+        function testCustomBookingsUrl() {
+            const url = document.getElementById('bookingsUrl').value;
+            showResult('bookingsResult', `Testing custom URL: ${url}`);
+            
+            fetch(url)
+                .then(response => {
+                    showResult('bookingsResult', 'Got response with status: ' + response.status);
+                    return response.text();
+                })
+                .then(text => {
+                    showResult('bookingsResult', 'Response received:<br>' + text.substring(0, 500) + '...');
+                })
+                .catch(error => {
+                    showError('bookingsResult', error);
+                });
+        }
+        
+        // Validate JSON response
+        function validateJson() {
+            const jsonInput = document.getElementById('jsonInput').value;
+            const resultDiv = document.getElementById('validateResult');
+            resultDiv.innerHTML = '';
+            
+            try {
+                const data = JSON.parse(jsonInput);
+                resultDiv.innerHTML += `<p class="success">Valid JSON!</p>`;
+                
+                // Check for bookings structure
+                if (data && data.bookings && Array.isArray(data.bookings)) {
+                    resultDiv.innerHTML += `<p class="success">Contains bookings array with ${data.bookings.length} appointments</p>`;
+                } else if (data && data.contact_messages && Array.isArray(data.contact_messages)) {
+                    resultDiv.innerHTML += `<p class="success">Contains contact_messages array with ${data.contact_messages.length} messages</p>`;
+                } else if (Array.isArray(data)) {
+                    resultDiv.innerHTML += `<p class="success">Contains a direct array with ${data.length} items</p>`;
+                } else {
+                    resultDiv.innerHTML += `<p class="error">Missing expected array structure</p>`;
+                }
+                
+                // List top-level keys
+                resultDiv.innerHTML += `<p>Top-level keys: ${Object.keys(data).join(', ')}</p>`;
+                
+                // Check for nested arrays
+                const arrayProps = [];
+                for (const key in data) {
+                    if (Array.isArray(data[key])) {
+                        arrayProps.push(`${key} (${data[key].length} items)`);
+                    }
+                }
+                if (arrayProps.length > 0) {
+                    resultDiv.innerHTML += `<p>Array properties: ${arrayProps.join(', ')}</p>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML += `<p class="error">Invalid JSON: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html> 

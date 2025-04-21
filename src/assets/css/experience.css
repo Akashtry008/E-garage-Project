@@ -1,0 +1,164 @@
+/* Base Container */
+.experience-container {
+    background-color: #8f0909;
+    /* dark mode garage vibes */
+    min-height: 100vh;
+    padding: 3rem 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    color: #e2e8f0;
+}
+
+/* Header Text */
+.experience-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 2.5rem;
+}
+
+/* Intro Paragraph */
+.experience-intro {
+    text-align: center;
+    max-width: 768px;
+    margin: 0 auto 4rem auto;
+    color: #cbd5e1;
+    font-size: 1rem;
+    line-height: 1.75rem;
+}
+
+/* Feature List */
+.experience-features {
+    max-width: 768px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+/* Feature Card */
+.feature-card {
+    background-color: #1e293b;
+    padding: 2rem;
+    border-radius: 1rem;
+    position: relative;
+    animation: sparkleBox 3s ease-in-out infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow:
+        0 0 10px rgba(0, 255, 153, 0.2),
+        0 0 20px rgba(0, 255, 153, 0.4),
+        0 0 30px rgba(0, 255, 153, 0.6);
+}
+
+.feature-card:hover {
+    transform: scale(1.05);
+    box-shadow:
+        0 0 12px rgba(0, 255, 153, 0.3),
+        0 0 25px rgba(0, 255, 153, 0.5),
+        0 0 40px rgba(0, 255, 153, 0.8);
+}
+
+.feature-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #10b981;
+    /* emerald green */
+    margin-bottom: 1rem;
+}
+
+.feature-content {
+    color: #94a3b8;
+    line-height: 1.75rem;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes sparkleBox {
+    0% {
+        box-shadow:
+            0 0 5px rgba(0, 255, 153, 0.2),
+            0 0 10px rgba(0, 255, 153, 0.3),
+            0 0 15px rgba(0, 255, 153, 0.4);
+    }
+
+    50% {
+        box-shadow:
+            0 0 10px rgba(0, 255, 153, 0.4),
+            0 0 20px rgba(0, 255, 153, 0.6),
+            0 0 30px rgba(0, 255, 153, 0.8);
+    }
+
+    100% {
+        box-shadow:
+            0 0 5px rgba(0, 255, 153, 0.2),
+            0 0 10px rgba(0, 255, 153, 0.3),
+            0 0 15px rgba(0, 255, 153, 0.4);
+    }
+}
+
+.fadeInDown {
+    animation: fadeInDown 0.6s ease forwards;
+}
+
+.fadeInUp {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.bounceIn {
+    animation: bounceIn 0.8s ease forwards;
+}
+
+.pulse {
+    animation: pulse 3s ease-in-out infinite;
+}

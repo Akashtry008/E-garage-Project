@@ -1,0 +1,257 @@
+/* Custom CSS for E-Garage Admin Dashboard */
+
+/* Animation for fade in */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animation for card hover */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* Animation for alert messages */
+@keyframes slideInDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* General animations */
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.fade-in-delay-1 {
+    animation: fadeIn 0.5s ease-out 0.1s forwards;
+    opacity: 0;
+}
+
+.fade-in-delay-2 {
+    animation: fadeIn 0.5s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.fade-in-delay-3 {
+    animation: fadeIn 0.5s ease-out 0.3s forwards;
+    opacity: 0;
+}
+
+/* Sidebar styles */
+.sidebar {
+    transition: all 0.3s ease;
+}
+
+.sidebar .nav-link {
+    border-radius: 0.25rem;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 0.25rem;
+}
+
+.sidebar .nav-link:hover {
+    background-color: var(--bs-dark);
+    transform: translateX(5px);
+}
+
+.sidebar .nav-link.active {
+    font-weight: bold;
+    background-color: var(--bs-primary);
+}
+
+.sidebar-heading {
+    padding: 1rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--bs-gray-500);
+}
+
+/* Dashboard cards */
+.dashboard-card {
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite;
+}
+
+.stat-card {
+    border-left: 5px solid;
+}
+
+.stat-card.primary {
+    border-left-color: var(--bs-primary);
+}
+
+.stat-card.success {
+    border-left-color: var(--bs-success);
+}
+
+.stat-card.info {
+    border-left-color: var(--bs-info);
+}
+
+.stat-card.warning {
+    border-left-color: var(--bs-warning);
+}
+
+/* Table styles */
+.table-hover tbody tr {
+    transition: all 0.2s ease;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+}
+
+/* Form styles */
+.form-control, .form-select {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* Alert animations */
+.alert {
+    animation: slideInDown 0.5s ease-out forwards;
+}
+
+/* Login page styles */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form {
+    max-width: 400px;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    background-color: var(--bs-dark);
+}
+
+.login-logo {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.login-form .btn-primary {
+    transition: all 0.3s ease;
+}
+
+.login-form .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom badge styles */
+.badge-status {
+    padding: 0.5rem 0.75rem;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+.badge-scheduled {
+    background-color: var(--bs-warning);
+    color: var(--bs-dark);
+}
+
+.badge-confirmed {
+    background-color: var(--bs-info);
+    color: var(--bs-dark);
+}
+
+.badge-completed {
+    background-color: var(--bs-success);
+    color: var(--bs-white);
+}
+
+.badge-cancelled {
+    background-color: var(--bs-danger);
+    color: var(--bs-white);
+}
+
+/* Modal animations */
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out;
+    transform: scale(0.95);
+}
+
+.modal.show .modal-dialog {
+    transform: scale(1);
+}
+
+/* Custom scrollbar for tables */
+.table-responsive {
+    scrollbar-width: thin;
+    scrollbar-color: var(--bs-gray-600) var(--bs-dark);
+}
+
+.table-responsive::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: var(--bs-dark);
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: var(--bs-gray-600);
+    border-radius: 10px;
+}
+
+/* Button animations */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Header title animations */
+.section-title {
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--bs-primary);
+    transition: width 0.5s ease;
+}
+
+.section-title:hover::after {
+    width: 100px;
+}
+
+/* Empty state styling */
+.empty-state {
+    padding: 3rem;
+    text-align: center;
+    color: var(--bs-gray-500);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}

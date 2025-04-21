@@ -1,0 +1,24 @@
+From: E-Garage <pythondeveloper@yopmail.com>
+To: pythondeveloper@yopmail.com
+Subject: E-Garage: Password Reset Request
+Date: Fri, 18 Apr 2025 23:42:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+
+        <html>
+        <body>
+        <h2>Password Reset Request</h2>
+        <p>Hello,</p>
+        <p>You have requested to reset your password for your E-Garage account.</p>
+        <p>Please click the link below to reset your password:</p>
+        <p><a href="http://localhost:5174/reset-password?token=Ty0G3NlAivpyQtsTiEeK0OEiGoDnv2X89F3K8JPzmanAK5VvdtsyqdFvNSGBLfv5">Reset My Password</a></p>
+        <p>Or copy and paste this URL into your browser:</p>
+        <p>http://localhost:5174/reset-password?token=Ty0G3NlAivpyQtsTiEeK0OEiGoDnv2X89F3K8JPzmanAK5VvdtsyqdFvNSGBLfv5</p>
+        <p>This link will expire in 24 hours.</p>
+        <p>If you did not request a password reset, please ignore this email and your password will remain unchanged.</p>
+        <p>Best regards,<br>E-Garage Team</p>
+        </body>
+        </html>
+        

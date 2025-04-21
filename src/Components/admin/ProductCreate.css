@@ -1,0 +1,75 @@
+.sc {
+    background-color: #940bd3b6;
+  }
+  
+  label {
+    color:whitesmoke;
+  }
+  .fc {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    /* min-height: 0;
+    min-width: 0; */
+    /* background-image: 'url(../../../../images/carousel-1.jpg)'; */
+    /* background-color: #0056b3; */
+    /* border-radius: 8px; */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  
+  }
+  
+  /* Styling for individual form groups */
+  .fg {
+    margin-bottom: 20px;
+    position:relative; 
+  }
+  
+  /* Input field styling */
+  .if {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    /* min-height: 0;
+    min-width: 0; */
+  }
+  
+  /* Focus effect on input fields */
+  .if:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Save button styling */
+  .save-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .save-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* File upload input styling */
+  .file-upload {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+  
+  .file-upload input[type="file"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+  }
+  

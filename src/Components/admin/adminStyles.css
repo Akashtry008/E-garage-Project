@@ -1,0 +1,285 @@
+/* Admin Layout Styles */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #1a1e4b; /* Dark blue background */
+}
+
+/* Sidebar styles - keep it fixed */
+.admin-layout > :first-child {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  min-width: 250px;
+  z-index: 100;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Content wrapper - pushes content to account for fixed sidebar */
+.admin-content-wrapper {
+  flex: 1;
+  margin-left: 250px; /* Same as sidebar width */
+  overflow-x: auto;
+  width: calc(100% - 250px);
+}
+
+/* Dashboard content */
+.dashboard-content {
+  padding: 20px;
+  min-width: 1100px; /* Ensure minimum width to show all columns */
+}
+
+/* Table container with horizontal scroll */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Make the table fill the container */
+.table {
+  width: 100%;
+  white-space: nowrap;
+}
+
+/* Header styling */
+.dashboard-content header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+/* Card styling */
+.dashboard-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Table cell sizing */
+.table th, .table td {
+  padding: 12px 15px;
+  vertical-align: middle;
+}
+
+/* Status badge styling */
+.badge-status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+  text-align: center;
+  min-width: 80px;
+}
+
+.badge-completed {
+  background-color: #28a745;
+  color: white;
+}
+
+.badge-scheduled {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.badge-cancelled {
+  background-color: #dc3545;
+  color: white;
+}
+
+.badge-refunded {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* Ensure responsive behavior for very small screens */
+@media (max-width: 768px) {
+  .admin-content-wrapper {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .admin-layout > :first-child {
+    display: none; /* Hide sidebar on very small screens */
+  }
+}
+
+/* Ensure search and action buttons layout properly */
+.action-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.search-container {
+  position: relative;
+  margin-right: 10px;
+}
+
+.search-input {
+  padding: 8px 12px;
+  padding-left: 35px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  width: 250px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Spinner for loading states */
+.fa-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Payment ID styling */
+.payment-id {
+  font-family: monospace;
+  word-break: break-all;
+  display: block;
+  max-width: 120px;
+}
+
+/* Add styles for empty state */
+.empty-state {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state .empty-icon {
+  font-size: 3rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.empty-state h4 {
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.empty-state p {
+  max-width: 80%;
+  margin-bottom: 1rem;
+}
+
+/* Customer info styles */
+.customer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.customer-name {
+  font-weight: 500;
+}
+
+.customer-contact {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Appointment table styles */
+.badge-success {
+  background-color: #198754;
+  color: white;
+}
+
+/* Enhanced table styles */
+.table-container {
+  overflow-x: auto;
+}
+
+.table th {
+  cursor: pointer;
+  user-select: none;
+  background-color: #f8f9fa;
+}
+
+.table th:hover {
+  background-color: #e9ecef;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+  padding: 12px 15px;
+}
+
+/* Badge styling improvements */
+.badge-status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+  text-align: center;
+  min-width: 80px;
+}
+
+/* Mock data banner */
+.mock-data-banner {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  padding: 8px 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Button styling */
+.btn-info {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  color: white;
+}
+
+.btn-info:hover {
+  background-color: #138496;
+  border-color: #117a8b;
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .table-container {
+    font-size: 14px;
+  }
+  
+  .badge-status {
+    padding: 4px 8px;
+    min-width: 70px;
+  }
+  
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+} 
